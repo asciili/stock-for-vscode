@@ -5,16 +5,10 @@ import * as vscode from 'vscode';
 import Stock from '../../types/stock';
 import VscodeConfig from '../../types/vscode-config';
 
-/**
- * 股票数据格式化
- */
 export function initStocks(stocks: any[]): Stock[] {
   return stocks.map(stock => ({
     name: stock.name || '',
     code: stock.code || '',
-    unit: stock.unit || 0,
-    volume: stock.volume || 0,
-
     now: stock.now || 0,
     low: stock.low || 0,
     high: stock.high || 0,
@@ -26,11 +20,7 @@ export function initStocks(stocks: any[]): Stock[] {
   }));
 }
 
-/**
- * 股票小助手配置加载
- */
 export function getConfig(): VscodeConfig {
-  // 获取股票小助手配置
   const tool = vscode.workspace.getConfiguration();
 
   return {
@@ -41,14 +31,11 @@ export function getConfig(): VscodeConfig {
     up_color: tool.get('stock-for-vscode.up_color') || '#ffffff',
     down_color: tool.get('stock-for-vscode.down_color') || '#000000',
 
-    up_percent: tool.get('stock-for-vscode.up_percent') || 0.1,
-    down_percent: tool.get('stock-for-vscode.down_percent') || -0.08,
+    up_percent: tool.get('stock-for-vscode.up_percent') || 0.5,
+    down_percent: tool.get('stock-for-vscode.down_percent') || -0.5,
   };
 }
 
-/**
- * 股票小助手配置获取
- */
 const config: VscodeConfig = getConfig();
 
 export default config;

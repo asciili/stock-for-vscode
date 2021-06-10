@@ -1,25 +1,20 @@
 {
   "name": "stock-for-vscode",
-  "displayName": "韭菜小猪 - Stock for VSCode",
-  "description": "股票实时股价 | 收益统计 | 盈亏警告 | A股 | 港股 | 美股 | stock",
-  "version": "0.2.3",
+  "displayName": "Stock for VSCode",
+  "description": "Stock for VSCode",
+  "version": "0.1.0",
   "keywords": [
     "stock",
-    "fund",
-    "股票",
-    "基金",
-    "韭菜小猪",
-    "涨跌监控",
     "vscode"
   ],
-  "publisher": "ZHANGXIANGLIANG",
+  "publisher": "asciili",
   "icon": "images/logo.png",
   "engines": {
     "vscode": "^1.47.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jiucaixiaozhu/stock-for-vscode.git"
+    "url": "https://github.com/asciili/stock-for-vscode.git"
   },
   "categories": [
     "Other"
@@ -32,11 +27,11 @@
     "commands": [
       {
         "command": "stock-for-vscode.watch",
-        "title": "🐷 韭菜小猪启动股票监听 🎉"
+        "title": "stock watch"
       },
       {
         "command": "stock-for-vscode.unwatch",
-        "title": "🐷 韭菜小猪关闭股票监听 🚫"
+        "title": "stock unwatch"
       }
     ],
     "configuration": {
@@ -45,28 +40,18 @@
           "type": "array",
           "default": [
             {
-              "name": "500ETF",
-              "code": "SH510500",
-              "unit": 5.545,
-              "volume": 1500
+              "name": "50ETF",
+              "code": "SH510050"
             },
             {
               "name": "300ETF",
-              "code": "SH510300",
-              "unit": 0,
-              "volume": 0
-            },
-            {
-              "name": "芯片ETF",
-              "code": "SH512760",
-              "unit": 2.319,
-              "volume": 7000
+              "code": "SH510300"
             }
           ],
-          "description": "配置需要监控的股票代码"
+          "description": "stocks"
         },
         "stock-for-vscode.api": {
-          "description": "股票数据源",
+          "description": "source",
           "type": "string",
           "default": "netease",
           "enum": [
@@ -76,49 +61,47 @@
             "xueqiu"
           ],
           "enumDescription": [
-            "网易股票数据源",
-            "新浪股票数据源",
-            "腾讯股票数据源",
-            "雪球股票数据源"
+            "neteause",
+            "sina",
+            "tencent",
+            "xueqiu"
           ]
         },
         "stock-for-vscode.up_percent": {
           "type": "number",
-          "default": 0.1,
-          "description": "股票上涨百分比监控"
+          "default": 0.5,
+          "description": "up_percent"
         },
         "stock-for-vscode.down_percent": {
           "type": "number",
-          "default": -0.08,
-          "description": "股票下跌百分比监控"
+          "default": -0.5,
+          "description": "down_percent"
         },
         "stock-for-vscode.up_color": {
           "type": "string",
           "default": "#ffffff",
-          "description": "股票上涨颜色配置"
+          "description": "up_color"
         },
         "stock-for-vscode.down_color": {
           "type": "string",
           "default": "#000000",
-          "description": "股票下跌颜色配置"
+          "description": "down_color"
         },
         "stock-for-vscode.interval": {
           "type": "number",
           "default": 10,
           "minimum": 10,
-          "patternErrorMessage": "间隔时间不要设置太小防止被禁",
-          "description": "数据更新周期单位秒"
+          "patternErrorMessage": "min interval is 10s",
+          "description": "interval"
         }
       }
     }
   },
   "scripts": {
-    "vscode:prepublish": "yarn run compile",
+    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "lint": "eslint src --ext ts",
-    "watch": "tsc -watch -p ./",
-    "version": "git add -A ./",
-    "postversion": "git push && git push --tags"
+    "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",

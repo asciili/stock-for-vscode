@@ -20,11 +20,6 @@ export interface Stock {
   // 盈亏百分比
   percent: number;
 
-  // 持有均价
-  unit: number;
-
-  // 持有数量
-  volume: number,
 }
 
 export default Stock;
